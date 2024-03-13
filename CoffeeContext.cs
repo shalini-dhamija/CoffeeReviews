@@ -18,6 +18,7 @@ public class CoffeeContext : DbContext
         var geisha = new Variety
         {
             Id = -1,
+            Slug = "geisha",
             Name = "Geisha",
             BeanType = BeanType.Arabica,
             RegionOfOrigin = "Ethiopia",

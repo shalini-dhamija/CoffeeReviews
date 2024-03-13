@@ -5,6 +5,7 @@ namespace CoffeeReviews.Models.Data;
 public class Variety 
 {   
     public int Id { get; set; }
+    public required string Slug { get; set; }
     public required string Name { get; set; }
     public required BeanType BeanType { get; set; }
     public required string RegionOfOrigin { get; set; }

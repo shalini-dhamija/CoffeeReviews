@@ -2,6 +2,7 @@ using CoffeeReviews;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddControllers();
 builder.Services.AddDbContext<CoffeeContext>();
 
 // Add services to the container.
@@ -19,5 +20,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.MapControllers();
 
 app.Run();
