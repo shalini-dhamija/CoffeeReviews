@@ -1,3 +1,6 @@
+using CoffeeReviews.Enums;
+using CoffeeReviews.Models.Data;
+using CoffeeReviews.Models.Request;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoffeeReviews.Controllers;
@@ -30,5 +33,21 @@ public class VarietiesController : Controller
         {
             return NotFound();
         }
+    }
+
+    [HttpPost("")]
+    public IActionResult Add([FromBody] AddVarietyRequest addVarietyRequest)
+    {
+        var newVariety = new Variety
+        {
+            Slug = addVarietyRequest.Name.ToLower().Replace(' ', '-'),
+            Name = addVarietyRequest.Name,
+            BeanType = Enum.Parse<BeanType>(addVarietyRequest.BeanType),
+            RegionOfOrigin = addVarietyRequest.RegionOfOrigin,
+            Description = addVarietyRequest.Description
+        };
+        var addedVariety = _context.Varieties.Add(newVariety).Entity;
+        _context.SaveChanges();
+        return CreatedAtAction(nameof(GetBySlug), new {Slug = addedVariety.Slug}, addedVariety);
     }
 }
