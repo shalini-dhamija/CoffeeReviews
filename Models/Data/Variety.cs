@@ -10,4 +10,5 @@ public class Variety
     public required BeanType BeanType { get; set; }
     public required string RegionOfOrigin { get; set; }
     public required string Description { get; set; }
+    
 }
